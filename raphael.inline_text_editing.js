@@ -149,7 +149,7 @@
 
 				// Add the input in the container and apply focus on it
 				$container.append(this.$input);
-				this.$input.focus();
+				this.$input.keyup(this._inputKeyUpHandler).focus();
 
 				return this.$input;
 			},
@@ -166,10 +166,30 @@
 
 				// Remove text input
 				this.$input.remove();
+			},
+
+			_inputKeyUpHandler: function(event) {
+				var value = this.value;
+				var newWidth = subject.inlineTextEditing._getStringWidth(value, this.style);
+
+				this.style.width = (newWidth + 40) + "px";
+			},
+
+			_getStringWidth: function(str, style) {
+			    var span = document.createElement("span");
+			    span.innerText = str;
+			    span.style.cssText = style.cssText;
+			    span.style.visibility = "hidden";
+
+			    var body = document.getElementsByTagName("body")[0];
+			    body.appendChild(span);
+			    var textWidth = span.offsetWidth;
+			    body.removeChild(span);
+
+			    return textWidth;
 			}
 		};
 
 		return subject.inlineTextEditing;
 	}
-
 }));
