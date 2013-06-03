@@ -116,7 +116,8 @@
 					'-ms-transform' : sTransform,
 					'-o-transform' : sTransform,
 					'-webkit-transform' : sTransform,
-					'transform' : sTransform
+					'transform' : sTransform,
+					'border': '1px solid black'
 
 				};
 
@@ -172,7 +173,7 @@
 				var value = this.value;
 				var newWidth = subject.inlineTextEditing._getStringWidth(value, this.style);
 
-				this.style.width = (newWidth + 40) + "px";
+				this.style.width = (newWidth + 2) + "px";
 			},
 
 			_getStringWidth: function(str, style) {
